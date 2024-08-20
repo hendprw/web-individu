@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hendprw Portfolio</title>
+    <link rel="stylesheet" href="./style.css" type="text/css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+   <div class="container2">
+        <div class="wrapper2">
+            <div class="logo2">
+                <h1>Hendprw</h1>
+            </div>
+            <ul class="nav2">
+                <li><a href="/">Home</a></li>
+                <li><a href="/">Github</a></li>
+                <li><a href="/">Linkedin</a></li>
+                <li><img src="https://lh3.googleusercontent.com/a/ACg8ocLKNFZrwhPYjVCI21eMhmCpJlRtzt7wBYgMPa_cyP96JTEobYM2=s288-c-no" alt="Profile"></li>
+            </ul> 
+        </div>
+    </div>
+    <div class="start">
+       <main>
+        <h1>👋 Hai, Saya Hendrik</h1>
+        <p>Saya merupakan seorang MABA Teknik Informatika dengan NIM 240411100118. Saya lahir di Tuban, 20 April 2005, namun Saya pindah dan berdomisili di Sampang sejak tahun 2010 silam. Kalian dapat menghubungi saya menggunakan nomor Whatsapp 083139682650</p>
+        <h1>📝 Teman Seangkatan</h1>
+
+        <!-- AWAL DARI BAGIAN ANGKATAN -->
+        <div class="angkatan" id="angkatan">
+        </div>
+        <!-- AKHIR DARI BAGIAN ANGKATAN -->
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    
+fetch('data.json')
+    .then(response => response.json())
+    .then(data => {
+        const angkatanDiv = document.getElementById('angkatan');
+
+        data.forEach(uwu => {
+            const card = document.createElement('div');
+            card.className = 'card';
+
+            const img = document.createElement('img');
+            img.src = uwu.fotoselfie;
+            img.className = 'card-img-top';
+            img.alt = uwu.nama;
+
+            const cardBody = document.createElement('div');
+            cardBody.className = 'card-body';
+
+            const cardTitle = document.createElement('h5');
+            cardTitle.className = 'card-title';
+            cardTitle.textContent = uwu.nama;
+
+            const cardText = document.createElement('p');
+            cardText.className = 'card-text';
+            cardText.innerHTML = `
+              <strong>NIM:</strong> ${uwu.nim}<br>
+              <strong>ALAMAT:</strong> ${uwu.alamat}<br>
+              <strong>TTL:</strong> ${uwu.ttl}<br>
+              <strong>NO:</strong> ${uwu.no}<br>
+              <strong>KELOMPOK:</strong> ${uwu.kelompok}
+            `;
+
+            cardBody.appendChild(cardTitle);
+            cardBody.appendChild(cardText);
+            card.appendChild(img);
+            card.appendChild(cardBody);
+            angkatanDiv.appendChild(card);
+        });
+    })
+    .catch(error => console.error('Error fetching data:', error));
+
+    </script>
+</body>
+</html>
